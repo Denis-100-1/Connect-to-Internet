@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farándula Estudiantil</title>
+  <link rel="stylesheet" href="fara.css">
+  <script src="faran.js" defer></script>
+</head>
+<body>
+  <!-- Barra de navegación con colores animados -->
+  <header class="navbar">
+    <nav>
+      <div class="logo">
+        <a>Farándula Estudiantil</a>
+      </div>
+      <div class="search-container">
+        <input type="text" id="search" placeholder="Buscar..." oninput="searchFunction()">
+      </div>
+      <div class="college-selector">
+        <a href="../index.html" style="color: white;
+  font-weight: bold;
+  text-decoration: none;">🏛 INICIO-RED EDUCATIVA INGAVI</a>
+  <label for="college-select">Seleccionar Colegio:</label>
+  <select id="college-select" onchange="window.location.href=this.value;">
+    <option value="todos">Todos</option>
+    <option value="colegio1.html">Colegio 1</option>
+    <option value="colegio2.html">Colegio 2</option>
+    <option value="colegio3.html">Colegio 3</option>
+  </select>
+</div>
+    </nav>
+  </header>
+
+  <!-- Botón para regresar a los titulares -->
+  <!--<button class="back-button" onclick="window.location.href='principal.html'">Volver a Titulares</button>-->
+
+  <!-- Contenido central con noticias de farándula -->
+  <section class="infinite-cards">
+    <div class="infinite-card" onclick="window.location.href='colegio1.html'">
+      <img src="https://i.ytimg.com/vi/keZOgRM2tyo/maxresdefault.jpg" alt="Colegio 1">
+      <h3>ENTRADA FOLKLORICA EN EL CENTRO DE VIACHA</h3>
+    </div>
+    <div class="infinite-card" onclick="window.location.href='colegio2.html'">
+      <img src="img/colegio2.jpg" alt="Colegio 2">
+      <h3>Colegio 2 - Noticias</h3>
+    </div>
+    <div class="infinite-card" onclick="window.location.href='colegio3.html'">
+      <img src="img/colegio3.jpg" alt="Colegio 3">
+      <h3>Colegio 3 - Noticias</h3>
+    </div>
+    <!-- Agregar más tarjetas de colegios según sea necesario -->
+  </section>
+
+</body>
+</html>
