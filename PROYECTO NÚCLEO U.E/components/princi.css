@@ -1,0 +1,67 @@
+/* Asegurarnos de que todas las imágenes tengan el mismo tamaño y se recorten si es necesario */
+.gallery-image {
+    width: 100%;
+    height: 200px; /* Altura fija para todas las imágenes */
+    object-fit: cover; /* Asegura que las imágenes se recorten si son muy grandes */
+}
+/* Estilo para la barra lateral */
+aside {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Estilo para los anuncios */
+.ad-banner {
+    margin-bottom: 20px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.ad-banner img,
+.ad-banner video {
+    width: 100%; /* Anuncios adaptables al ancho de la barra */
+    border-radius: 8px;
+}
+
+/* Estilo para los enlaces en la barra lateral */
+aside h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+aside ul li {
+    margin-bottom: 10px;
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+aside ul li a:hover {
+    text-decoration: underline;
+}
+.search-container {
+    width: 250px;
+}
+
+#search {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
