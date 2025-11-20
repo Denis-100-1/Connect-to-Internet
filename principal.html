@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Educativa Provincial Ingavi</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Iconos de Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Icono para navegadores -->
+<link rel="icon" href="https://miviacha.wordpress.com/wp-content/uploads/2016/12/escudo-viacha-transpernent-rough.png?w=640" type="image/png">
+
+<!-- Icono para dispositivos Apple -->
+<link rel="apple-touch-icon" href="https://miviacha.wordpress.com/wp-content/uploads/2016/12/escudo-viacha-transpernent-rough.png?w=640">
+
+<!-- Icono para dispositivos Android / Windows -->
+<link rel="manifest" href="https://miviacha.wordpress.com/wp-content/uploads/2016/12/escudo-viacha-transpernent-rough.png?w=640">
+
+<link rel="stylesheet" type="text/css" href="princi.css">
+<meta name="theme-color" content="#0d6efd">
+    <!-- Estilos personalizados -->
+    <style>
+        body {
+            scroll-behavior: smooth;
+            position: relative;
+            background: transparent;
+            overflow-x: hidden;
+        }
+
+        .carousel-item img {
+            height: 70vh;
+            object-fit: cover;
+        }
+
+        .navbar {
+            background-color: #0d6efd;
+        }
+
+        .navbar-brand, .nav-link {
+            color: white !important;
+        }
+
+        .section-title {
+            margin-top: 60px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Solo aplica al slide con clase aulas-slide */
+    .aulas-slide img {
+    flex: 1 1 45%;
+    max-width: 45%;
+    }
+
+    @media (max-width: 768px) {
+        .aulas-slide img {
+        flex: 1 1 100%;
+        max-width: 100%;
+        }
+    }
+
+        footer {
+            background-color: #0d6efd;
+            color: white;
+            padding: 30px 0;
+        }
+
+        footer a {
+            color: #f8f9fa;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Fondo animado de colores borrosos */
+#popup-fondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 998;
+  background: radial-gradient(circle at 20% 20%, #f60b0b, transparent 40%),
+              radial-gradient(circle at 80% 80%, #010101, transparent 40%),
+              radial-gradient(circle at 50% 50%, ##ffcf00, transparent 40%);
+  filter: blur(60px);
+  animation: moverFondos 10s infinite alternate ease-in-out;
+  display: none;
+}
+
+@keyframes moverFondos {
+  0% {
+    background-position: 20% 20%, 80% 80%, 50% 50%;
+  }
+  100% {
+    background-position: 80% 30%, 20% 70%, 60% 40%;
+  }
+}
+
+/* Contenedor del popup */
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenido del popup */
+.popup-content {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  animation: aparecer 0.6s ease;
+}
+
+@keyframes aparecer {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+#fondo-animado {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: radial-gradient(circle at 20% 20%, #f60b0b, transparent 40%),
+              radial-gradient(circle at 80% 80%, #010101, transparent 40%),
+              radial-gradient(circle at 50% 50%, #ffcf00, transparent 40%);
+  filter: blur(60px);
+  animation: moverFondos 10s infinite alternate ease-in-out;
+}
+
+/* Animación de movimiento suave del fondo */
+@keyframes moverFondos {
+  0% {
+    background-position: 20% 20%, 80% 80%, 50% 50%;
+  }
+  100% {
+    background-position: 80% 30%, 20% 70%, 60% 40%;
+  }
+}
+
+#eventos .accordion-button {
+  background-color: #ffffff;
+  color: black;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+#eventos .accordion-button:not(.collapsed) {
+  background-color: #0b5ed7;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.1);
+}
+
+#eventos .accordion-button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(13,110,253,0.25);
+}
+
+#eventos .accordion-body {
+  background: rgba(255,255,255,0.9);
+  border-radius: 0 0 10px 10px;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+    </style>
+</head>
+<body>
+
+    <!-- Fondo animado -->
+<div id="fondo-animado"></div>
+<!-- Notificación emergente -->
+<div id="popup-fondo"></div>
+
+<div id="popup-noticia" class="popup-container">
+  <div class="popup-content text-center">
+    <h2>⚠️ Aviso Importante</h2>
+    <p>Las inscripciones para el próximo año escolar comienzan el <strong>10 de diciembre</strong>.</p>
+    <p><strong>Debe ingresar a "Escuelas de la Red" para inscribirse.</strong></p>
+    <button id="cerrarPopup" class="btn btn-light mt-3">Cerrar</button>
+  </div>
+</div>
+
+
+    <!-- Carrusel automático -->
+    <div id="carouselNucleo" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+  <div class="carousel-inner">
+
+    <!-- PRIMER SLIDE -->
+    <div class="carousel-item active">
+      <div class="d-flex justify-content-center gap-2 flex-wrap">
+        <img src="https://scontent.flpb1-1.fna.fbcdn.net/v/t39.30808-6/475762407_1119601946572636_673688780985379843_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=1Ns9-c7xbWkQ7kNvwHxALK5&_nc_oc=AdmjJQfTORkdA8ImLjB8ZmNM6L-oY1dWLWgRAsgZTVhvuDM0qDiFvE9B-uECwfjKefo&_nc_zt=23&_nc_ht=scontent.flpb1-1.fna&_nc_gid=W_D9Vgihu97xlOvGFPQsTg&oh=00_AfiO5taWHy8B0WKpN_fF7JOJADlx2_iARzxWNp1hIO2Lsw&oe=691BF725"
+             class="img-fluid rounded" alt="Colegio Nucleo" style="max-width: 23%;">
+        <img src="https://i.ytimg.com/vi/08rNfiHa2P0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDL9--u-ny1cKmipewv-AdBqBtRSw"
+             class="img-fluid rounded" alt="Imagen 2" style="max-width: 23%;">
+        <img src="https://scontent.flpb2-2.fna.fbcdn.net/v/t1.6435-9/182423522_3330868180349180_8230109578080057636_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=KIr99iCymLkQ7kNvwEBHdJG&_nc_oc=AdnsGG3ACrfNtcQK8fVUDKxaHvxoioxPlW6WkmddFDTrxjpLtgjngRZWFAEjBshlu80&_nc_zt=23&_nc_ht=scontent.flpb2-2.fna&_nc_gid=PcIk-c_IDiJUBjz478S32A&oh=00_AfjKSs_VizALgrGfNxg8VP_eRevZhgMSWtk6yxGgn9Eq1A&oe=6930CC5A" class="img-fluid rounded" alt="Imagen 3" style="max-width: 23%;">
+        <img src="https://www.sicoingenieros.com/img/proyectos/44-Jisunu/1.jpg" class="img-fluid rounded" alt="Imagen 4" style="max-width: 23%;">
+      </div>
+      <div class="carousel-caption d-none d-md-block" style="text-align: center; background: radial-gradient(circle at center, rgba(0, 0, 0, 0.30) 100%, rgba(255, 255, 255, 0) 0%); border-radius: 1em; overflow: hidden;">
+        <h3>Bienvenidos</h3>
+        <p>Educando con valores, ciencia y tecnología</p>
+      </div>
+    </div>
+
+    <!-- SEGUNDO SLIDE -->
+    <div class="carousel-item">
+      <img src="https://construmarket.com.bo/wp-content/uploads/2022/12/IMG-20211202-WA0013-thegem-blog-default.jpg" class="img-fluid rounded" alt="Colegio Nucleo" style="max-width: 40%;">
+      <img src="https://scontent.flpb2-2.fna.fbcdn.net/v/t39.30808-6/504918797_1240831547834774_7089610579482674317_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=833d8c&_nc_ohc=qrSe4poTnyUQ7kNvwGOtMGi&_nc_oc=AdlOzYklAjSF_q4uAtOI_7Ow18gDmeSuU4mchF6AB_ACPSWIP6LtE-2WWp4Ndar_dpg&_nc_zt=23&_nc_ht=scontent.flpb2-2.fna&_nc_gid=BOTbru3Znl8H_3Sxvfmg_Q&oh=00_Afgsf9xrCPIj0HYmpMOB-8tA7y1Ujd4KLmrRgFlrAGLoDA&oe=690F3CE4"
+             class="img-fluid rounded" alt="Colegio Nucleo" style="max-width: 45%;">
+      <div class="carousel-caption d-none d-md-block" style="text-align: center; background: radial-gradient(circle at center, rgba(0, 0, 0, 0.30) 100%, rgba(255, 255, 255, 0) 0%); border-radius: 1em; overflow: hidden;">
+        <h3>Aulas del Núcleo</h3>
+      </div>
+    </div>
+
+    <!-- TERCER SLIDE -->
+    <div class="carousel-item">
+      <img src="imagenes/estudiantes.jpg" class="img-fluid rounded" alt="Estudiantes" style="max-width: 45%;">
+      <img src="https://s.educacaoadventista.org.br/escola/estruturas/xAfN8d15cj75AtNw6EjwdYvgHQayBB3eiSPXwfPz.jpg" class="img-fluid rounded" alt="Estudiantes" style="max-width: 45%;">
+      <div class="carousel-caption d-none d-md-block" style="text-align: center; background: radial-gradient(circle at center, rgba(0, 0, 0, 0.30) 100%, rgba(255, 255, 255, 0) 0%); border-radius: 1em; overflow: hidden;">
+        <h3>Estudiantes del Núcleo</h3>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Red Educativa Provincial Ingavi</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNucleo">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNucleo">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+  <li class="nav-item"><a class="nav-link" href="secundario.html">Escuelas de la Red</a></li>
+  <li class="nav-item"><a class="nav-link" href="#">Adicional</a></li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Comunidad Educativa</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#noticias">Noticias</a></li>
+      <li><a class="dropdown-item" href="#eventos">Eventos</a></li>
+
+      <li><a class="dropdown-item" href="farandula.html">FARÁNDULA ESTUDIANTIL</a></li>
+    </ul>
+  </li>
+</ul>
+                <!--<form class="d-flex ms-3" role="search" onsubmit="event.preventDefault(); filtrar();">
+    <input id="busqueda" class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Buscar">
+    <button class="btn btn-outline-light" type="submit">
+        <i class="bi bi-search"></i>
+    </button>
+</form> -->
+
+<!-- BUSCADOR AVANZADO -->
+<div class="search-container position-relative mb-3">
+    <input type="text" id="search" class="form-control"
+           placeholder="Buscar secciones, noticias, eventos, colegios..."
+           oninput="searchGlobal()">
+
+    <!-- POPUP DE RESULTADOS -->
+    <div id="searchResults"
+         class="list-group position-absolute w-100 mt-1 shadow"
+         style="z-index: 2000; display:none;">
+    </div>
+</div>
+
+
+
+            </div>
+            </form>
+        </div>
+    </nav>
+<!-- Contenedor principal con el contenido y la barra lateral -->
+    <div class="container-fluid">
+    <div class="row">
+
+    <!-- Barra Lateral (Aside) -->
+       <aside class="col-md-3">
+    <h3>Información Adicional</h3>
+
+    <!-- Sección 1 -->
+    <div class="p-2 border rounded mb-3">
+        <h5>Noticia importante</h5>
+        <p class="small">Actualización destacada relacionada con la red educativa.</p>
+    </div>
+
+    <!-- Sección 2 -->
+    <div class="p-2 border rounded mb-3">
+        <h5>Evento cercano</h5>
+        <p class="small">Información sobre el próximo evento de interés.</p>
+    </div>
+
+    <!-- Sección 3 -->
+    <div class="p-2 border rounded mb-3">
+        <h5>Publicidad</h5>
+        <p class="small">Espacio disponible para anuncios o promociones.</p>
+    </div>
+</aside>
+
+        <!-- Contenido principal (Ya tienes secciones definidas) -->
+        <main class="col-md-9">
+
+    <!-- Noticias -->
+    <section id="noticias" class="container">
+        <h2 class="section-title">Noticias Recientes</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <img src="imagenes/biblioteca.jpg" class="card-img-top" alt="Noticia 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Nueva Biblioteca Inaugurada</h5>
+                        <p class="card-text">El núcleo cuenta con una nueva biblioteca moderna con recursos digitales y físicos.</p>
+                        <a href="#" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <img src="imagenes/campeonato.jpg" class="card-img-top" alt="Noticia 2" style="height: 270px ">
+                    <div class="card-body">
+                        <h5 class="card-title">Campeonato Interescolar</h5>
+                        <p class="card-text">Nuestros estudiantes participaron en el campeonato de fútbol con excelentes resultados.</p>
+                        <a href="#" class="btn btn-primary">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <img src="imagenes/ciencias.jpg" class="card-img-top" alt="Noticia 3">
+                    <div class="card-body">
+                        <h5 class="card-title">Semana de la Ciencia</h5>
+                        <p class="card-text">Actividades científicas y proyectos tecnológicos destacados por estudiantes del núcleo.</p>
+                        <a href="#" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Eventos (formato acordeón) -->
+<section id="eventos" class="container my-5">
+  <h2 class="text-center fw-bold mb-4">📅 Próximos Eventos</h2>
+
+  <div class="accordion" id="acordeonEventos">
+    <!-- Evento 1 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="evento1">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#colapso1" aria-expanded="true" aria-controls="colapso1">
+          Feria Científica 2025
+        </button>
+      </h2>
+      <div id="colapso1" class="accordion-collapse collapse show" aria-labelledby="evento1" data-bs-parent="#acordeonEventos">
+        <div class="accordion-body">
+          <p><strong>Fecha:</strong> 20 de noviembre de 2025</p>
+          <p><strong>Lugar:</strong> Unidad Educativa Hugo Ordoñez Saravia</p>
+          <p>Los estudiantes de todos los colegios del núcleo presentarán proyectos de ciencia y tecnología. ¡Invitamos a toda la comunidad educativa a participar!</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Evento 2 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="evento2">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#colapso2" aria-expanded="false" aria-controls="colapso2">
+          Jornada Deportiva Intercolegial
+        </button>
+      </h2>
+      <div id="colapso2" class="accordion-collapse collapse" aria-labelledby="evento2" data-bs-parent="#acordeonEventos">
+        <div class="accordion-body">
+          <p><strong>Fecha:</strong> 10 de diciembre de 2025</p>
+          <p><strong>Lugar:</strong> Estadio Municipal de Viacha</p>
+          <p>Competencias deportivas entre las unidades educativas del núcleo. Se premiará la participación, el trabajo en equipo y la disciplina.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Evento 3 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="evento3">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#colapso3" aria-expanded="false" aria-controls="colapso3">
+          Clausura del Año Escolar
+        </button>
+      </h2>
+      <div id="colapso3" class="accordion-collapse collapse" aria-labelledby="evento3" data-bs-parent="#acordeonEventos">
+        <div class="accordion-body">
+          <p><strong>Fecha:</strong> 15 de diciembre de 2025</p>
+          <p><strong>Lugar:</strong> Teatro Municipal de Viacha</p>
+          <p>Ceremonia de clausura con entrega de reconocimientos a estudiantes destacados y docentes con proyectos innovadores.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="evento4">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#colapso4" aria-expanded="false" aria-controls="colapso4">
+          Chocolatada Estudiantil en la Ciudad de Viacha
+        </button>
+      </h2>
+      <div id="colapso4" class="accordion-collapse collapse" aria-labelledby="evento4" data-bs-parent="#acordeonEventos">
+        <div class="accordion-body">
+          <p><strong>Fecha:</strong> 15 de diciembre de 2025</p>
+          <p><strong>Hora:</strong> 10:00 a.m.</p>
+          <p><strong>Lugar:</strong> Plaza Principal de Viacha</p>
+          <p>La Municipalidad de Viacha invita a todos los estudiantes de las unidades educativas de la ciudad a disfrutar de una cálida chocolatada navideña. Con la llegada de la temporada festiva, se organizará una tarde de convivencia, juegos y actividades recreativas para los más pequeños. Además, se tendrá una presentación de villancicos a cargo de los coros estudiantiles locales. ¡No faltes a esta fiesta de fin de año! ¡Ven y comparte la magia de la navidad con tus amigos y compañeros!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="evento5">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#colapso5" aria-expanded="false" aria-controls="colapso5">
+          Repartición de Víveres a Familias Estudiantiles en Viacha
+        </button>
+      </h2>
+      <div id="colapso5" class="accordion-collapse collapse" aria-labelledby="evento5" data-bs-parent="#acordeonEventos">
+        <div class="accordion-body">
+          <p><strong>Fecha:</strong> 15 de diciembre de 2025</p>
+          <p><strong>Hora:</strong> 9:00 AM</p>
+          <p><strong>Lugar:</strong> Estadio Municipal de Viacha</p>
+          <p>El Gobierno Municipal de Viacha, en colaboración con organizaciones locales, llevará a cabo la repartición de víveres a las familias estudiantes de los colegios públicos y privados de la ciudad. Esta actividad busca apoyar a las familias más necesitadas, garantizando que todos los estudiantes tengan acceso a alimentos durante la temporada escolar. Los packs de víveres incluirán productos básicos como arroz, azúcar, pasta, leche y otros alimentos esenciales. La entrega será organizada de manera ordenada para garantizar la seguridad de todos los asistentes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="evento6">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#colapso6" aria-expanded="false" aria-controls="colapso6">
+          Día de Talentos de Todos los Colegios de Viacha
+        </button>
+      </h2>
+      <div id="colapso6" class="accordion-collapse collapse" aria-labelledby="evento6" data-bs-parent="#acordeonEventos">
+        <div class="accordion-body">
+          <p><strong>Fecha:</strong> 20 de octubre de 2025/p>
+          <p><strong>Hora:</strong> 8:00 AM - 3:00 PM</p>
+          <p><strong>Lugar:</strong> Coliseo Municipal de Viacha</p>
+          <p>¡La ciudad de Viacha celebra su Día de Talentos! Todos los colegios de la ciudad están invitados a participar en este evento único donde los estudiantes podrán mostrar sus habilidades artísticas, musicales, deportivas y académicas. El evento contará con presentaciones de danza, teatro, música, deportes y exposiciones científicas, donde los alumnos tendrán la oportunidad de demostrar su talento frente a una audiencia entusiasta. Este evento busca fomentar la creatividad y el espíritu de colaboración entre las distintas instituciones educativas. ¡Ven y apoya a tu colegio en esta fiesta de talentos!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Inscripciones 
+    <section id="inscripciones" class="container">
+        <h2 class="section-title">Inscripciones</h2>
+        <p class="text-center">Complete el formulario para preinscribirse:</p>
+        <form class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Nombre Completo</label>
+                <input type="text" class="form-control" placeholder="Ingrese su nombre">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Curso al que postula</label>
+                <select class="form-select">
+                    <option>Inicial</option>
+                    <option>Primaria</option>
+                    <option>Secundaria</option>
+                </select>
+            </div>
+            <div class="col-md-12">
+                <label class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" placeholder="ejemplo@gmail.com">
+            </div>
+            <div class="col-12 text-center">
+                <button class="btn btn-success"><i class="bi bi-send"></i> Enviar Solicitud</button>
+            </div>
+        </form>
+    </section>
+
+     Escuelas del Núcleo
+    <section id="escuelas" class="container">
+        <h2 class="section-title">Escuelas del Núcleo</h2>
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action">Unidad Educativa HUGO ORDOÑEZ SARAVIA - Central(NÚCLEO)</a>
+            <a href="#" class="list-group-item list-group-item-action">Unidad Educativa EVARISTO VALLE</a>
+            <a href="#" class="list-group-item list-group-item-action">Unidad Educativa BALLIVIÁN</a>
+            <a href="#" class="list-group-item list-group-item-action">Unidad Educativa ADVENTISTA "VIACHA"</a>
+            <a href="#" class="list-group-item list-group-item-action">Unidad Educativa SOBOCE</a>
+            <a href="#" class="list-group-item list-group-item-action">Unidad Educativa INGAVI</a>
+            <a href="#" class="list-group-item list-group-item-action">Unidad Educativa 18 DE NOVIEMBRE</a>
+        </div>
+    </section> -->
+
+    <!-- Autoridades -->
+    <section id="autoridades" class="container">
+        <h2 class="section-title">Autoridades del Núcleo</h2>
+        <div class="row justify-content-center align-item-center" style="min-height: 20vh;">
+            <div class="col-md-4" style="text-align: center;">
+                <img src="imagenes/director.png" class="rounded-circle mb-3" alt="Director" style="height: 400px">
+                <h5>Lic. Omar Elsner Quispe Montes de Oca</h5>
+                <p>Director Distrital de la Red</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="container">
+    <h2 class="section-title">Galería Fotográfica</h2>
+    <div class="row g-3">
+        <!-- Cada imagen está envuelta en un enlace para abrir el modal -->
+        <div class="col-md-3">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbLJ6gFXC0ZrCpH67-yra9VxEM-1rFx0JL8A&s')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbLJ6gFXC0ZrCpH67-yra9VxEM-1rFx0JL8A&s" class="img-fluid rounded shadow gallery-image">
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setImage('https://noticiasfides.com/images/news/2021/09/c-20altiplanocorapata-411506-EB9B.jpg')">
+                <img src="https://noticiasfides.com/images/news/2021/09/c-20altiplanocorapata-411506-EB9B.jpg" class="img-fluid rounded shadow gallery-image">
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setImage('https://previews.123rf.com/images/rchphoto/rchphoto1803/rchphoto180300039/97261639-sucre-bolivia-10-september-2011-fiesta-de-la-virgen-de-guadalupe-in-sucre-young-participants-in.jpg')">
+                <img src="https://previews.123rf.com/images/rchphoto/rchphoto1803/rchphoto180300039/97261639-sucre-bolivia-10-september-2011-fiesta-de-la-virgen-de-guadalupe-in-sucre-young-participants-in.jpg" class="img-fluid rounded shadow gallery-image">
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setImage('https://cdn.bolivia.com/sdi/2019/06/06/dia-del-maestro-en-bolivia-742209.jpg')">
+                <img src="https://cdn.bolivia.com/sdi/2019/06/06/dia-del-maestro-en-bolivia-742209.jpg" class="img-fluid rounded shadow gallery-image">
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB0cIQEyrynwaBbOKZEGNkiINNnvejRLdv4g&s')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB0cIQEyrynwaBbOKZEGNkiINNnvejRLdv4g&s" class="img-fluid rounded shadow gallery-image">
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYWglUbH9_31RD69BrBzjvb62Kqpoq4hZp8g&s')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYWglUbH9_31RD69BrBzjvb62Kqpoq4hZp8g&s" class="img-fluid rounded shadow gallery-image">
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6ZXUYuTePA5cybKg9Cu-oW89Xx4eW78YRgQ&s')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6ZXUYuTePA5cybKg9Cu-oW89Xx4eW78YRgQ&s" class="img-fluid rounded shadow gallery-image">
+            </a>
+        </div>
+
+        <div class="col-md-3">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="setImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4nLqPqz94JhuJDgBb07w82tSyK9QTrarwFQ&s')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4nLqPqz94JhuJDgBb07w82tSyK9QTrarwFQ&s" class="img-fluid rounded shadow gallery-image">
+            </a>
+        </div>
+
+        <!-- Otras imágenes van aquí -->
+    </div>
+</section>
+
+<!-- Modal para mostrar la imagen completa -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img src="" id="modalImage" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- Tu contenido de la página aquí (galerías, eventos, etc.) -->
+            <!-- Galería, Autoridades, etc. -->
+        </main>
+  </div>
+</div>
+
+    <!-- Footer -->
+    <footer id="contacto" class="text-center">
+        <div class="container">
+            <h5>Contacto</h5>
+            <p><i class="bi bi-geo-alt-fill"></i><a href="https://maps.app.goo.gl/JaMov4QPT19SCgzV6" target="_blank"> ZONA VILLA SARA, CALLE SANTA CRUZ #105, VIACHA, La Paz, Bolivia</a></p>
+            <p><i class="bi bi-telephone-fill"></i> +591 76543210 | <i class="bi bi-envelope-fill"></i> info@nucleobolivia.edu.bo</p>
+            <div class="socials">
+                <a href="https://www.facebook.com/profile.php?id=61565041220904" target="_blank"><i class="bi bi-facebook fs-3 mx-2"></i></a>
+                <a href="#"><i class="bi bi-tiktok fs-3 mx-2"></i></a>
+            </div>
+            <p class="mt-3">© 2025 Núcleo Hugo Ordoñez Saravia - Viacha - La Paz - Bolivia | Todos los derechos reservados</p>
+        </div>
+        <div id="contador-visitas">
+        Visitas: <span id="num-visitas">0</span>
+    </div>
+    </footer>
+    <script type="text/javascript" src="principa.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+  // Mostrar popup al cargar
+  window.addEventListener('load', () => {
+    document.getElementById('popup-fondo').style.display = 'block';
+    document.getElementById('popup-noticia').style.display = 'flex';
+  });
+
+  // Cerrar popup
+  document.getElementById('cerrarPopup').addEventListener('click', () => {
+    document.getElementById('popup-fondo').style.display = 'none';
+    document.getElementById('popup-noticia').style.display = 'none';
+  });
+</script>
+<script>
+    // Obtener visitas actuales desde localStorage
+    let visitas = localStorage.getItem("contadorVisitas");
+
+    // Si no existe, iniciar en 0
+    if (visitas === null) {
+        visitas = 0;
+    }
+
+    // Incrementar visitas
+    visitas++;
+
+    // Guardar en localStorage
+    localStorage.setItem("contadorVisitas", visitas);
+
+    // Mostrar en pantalla
+    document.getElementById("num-visitas").textContent = visitas;
+</script>
+
+
+<script>
+/* Palabras clave predefinidas → apuntan a secciones y enlaces existentes */
+const mapaBusqueda = [
+    { palabras: ["noticia","noticias","recientes"], accion: () => scrollToID("noticias") },
+    { palabras: ["evento","eventos","agenda","actividades"], accion: () => scrollToID("eventos") },
+    { palabras: ["galeria","galería","fotos","fotografica"], accion: () => scrollToID("galeria") },
+    { palabras: ["autoridad","autoridades","director"], accion: () => scrollToID("autoridades") },
+    { palabras: ["colegios","escuelas","red","nucleo","núcleo"], accion: () => goToLink("secundario.html") },
+    { palabras: ["farandula","farándula","estudiantil"], accion: () => goToLink("farandula.html") }
+];
+
+/* Función principal del buscador */
+function searchGlobal() {
+    const input = document.getElementById("search").value.toLowerCase().trim();
+    const resultsBox = document.getElementById("searchResults");
+    resultsBox.innerHTML = "";
+
+    if (input === "") {
+        resultsBox.style.display = "none";
+        return;
+    }
+
+    let resultados = [];
+
+    mapaBusqueda.forEach(item => {
+        item.palabras.forEach(p => {
+            if (p.includes(input) || input.includes(p)) {
+                resultados.push({ palabra: p, accion: item.accion });
+            }
+        });
+    });
+
+    if (resultados.length === 0) {
+        resultados.push({
+            palabra: "No se encontraron coincidencias",
+            accion: null
+        });
+    }
+
+    resultados.forEach(r => {
+        let fila = document.createElement("button");
+        fila.className = "list-group-item list-group-item-action";
+        fila.textContent = r.palabra;
+
+        if (r.accion) fila.onclick = r.accion;
+        else fila.disabled = true;
+
+        resultsBox.appendChild(fila);
+    });
+
+    resultsBox.style.display = "block";
+}
+
+/* Desplazar suavemente a un ID */
+function scrollToID(id) {
+    document.getElementById("searchResults").style.display = "none";
+    let el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+}
+
+/* Ir a otra página */
+function goToLink(url) {
+    document.getElementById("searchResults").style.display = "none";
+    window.location.href = url;
+}
+</script>
+</body>
+</html>
